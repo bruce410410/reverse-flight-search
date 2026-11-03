@@ -20,8 +20,52 @@ export interface StreetViewPanoramaData {
   };
 }
 
+interface LatLngLiteral {
+  lat: number;
+  lng: number;
+}
+
+/** 結果頁路線地圖用到的部分 Maps JS 型別 */
+export interface MapOverlay {
+  setMap(map: unknown): void;
+}
+
 interface GoogleMapsApi {
   maps: {
+    Map: new (
+      container: HTMLElement,
+      options: {
+        center: LatLngLiteral;
+        zoom: number;
+        clickableIcons: boolean;
+        mapTypeControl: boolean;
+        streetViewControl: boolean;
+        fullscreenControl: boolean;
+      },
+    ) => { fitBounds(bounds: unknown, padding?: number): void };
+    LatLngBounds: new () => { extend(point: LatLngLiteral): void };
+    Polyline: new (options: {
+      path: LatLngLiteral[];
+      strokeColor: string;
+      strokeOpacity: number;
+      strokeWeight: number;
+      map: unknown;
+    }) => MapOverlay;
+    Marker: new (options: {
+      position: LatLngLiteral;
+      map: unknown;
+      label: { text: string; color: string; fontSize: string; fontWeight: string };
+      icon: {
+        path: number;
+        scale: number;
+        fillColor: string;
+        fillOpacity: number;
+        strokeColor: string;
+        strokeWeight: number;
+      };
+      zIndex: number;
+    }) => MapOverlay;
+    SymbolPath: { CIRCLE: number };
     StreetViewService: new () => {
       getPanorama(
         request: {
@@ -77,15 +121,17 @@ export function loadGoogleMapsStreetView(apiKey: string): Promise<GoogleMapsApi>
 
   loaderKey = apiKey;
   loaderPromise = new Promise<GoogleMapsApi>((resolve, reject) => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.defer = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=weekly&loading=async`;
-    script.onload = () => {
+    // loading=async 時 script onload 觸發得太早（google.maps 還是空的），要等 callback 才能用
+    const callbackName = "__googleMapsLoaded";
+    (window as unknown as Record<string, () => void>)[callbackName] = () => {
       const googleMaps = window.google;
       if (googleMaps?.maps?.StreetViewPanorama) resolve(googleMaps);
       else reject(new Error("Google Maps JavaScript API did not initialize."));
     };
+    const script = document.createElement("script");
+    script.async = true;
+    script.defer = true;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=weekly&loading=async&callback=${callbackName}`;
     script.onerror = () => reject(new Error("Google Maps JavaScript API could not be loaded."));
     document.head.append(script);
   }).catch((error: unknown) => {

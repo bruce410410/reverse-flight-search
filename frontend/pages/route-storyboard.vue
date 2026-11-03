@@ -269,6 +269,13 @@ const ROUTE_PATH = "M700 600 C 700 480 760 400 830 380 S 960 470 1010 500 S 1120
                 aria-hidden="true"
               >{{ i + 1 }}</span>
             </template>
+            <RouteResultMap
+              v-if="apiKey"
+              :route-path="routePath"
+              :frames="frames"
+              :api-key="apiKey"
+              :label="t('routes.result.mapTitle')"
+            />
           </div>
         </aside>
         <ol class="frames result-frames">
