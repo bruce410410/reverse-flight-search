@@ -15,7 +15,6 @@ export interface BackendHealth {
  * 先確認快取層是否健康，決定要不要提示「目前資料可能較不即時」。
  */
 export function useBackendHealth() {
-  const config = useRuntimeConfig();
 
   const {
     data: health,
@@ -23,7 +22,6 @@ export function useBackendHealth() {
     pending,
     refresh,
   } = useFetch<BackendHealth>("/api/health", {
-    baseURL: config.public.apiBaseUrl,
     // 健康狀態不快取 payload，每次呼叫都要拿到最新結果。
     key: "backend-health",
   });

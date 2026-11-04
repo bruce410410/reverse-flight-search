@@ -8,11 +8,20 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
-  // 後端 API 位址，可透過環境變數覆寫（例如部署到不同主機時）。
-  runtimeConfig: {
-    public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:3011",
+  // 前端一律呼叫同源的 /api，由 dev server 轉給後端；這樣 localhost 與
+  // flight.bru-bus.com（經 Caddy）都能用。後端位址可用 BACKEND_PROXY_TARGET 覆寫。
+  nitro: {
+    devProxy: {
+      "/api": {
+        target: process.env.BACKEND_PROXY_TARGET || "http://127.0.0.1:3011/api",
+        changeOrigin: true,
+      },
     },
+  },
+
+  // 經由 Caddy 用 flight.bru-bus.com 連進來時，Vite 會擋不認得的 Host。
+  vite: {
+    server: { allowedHosts: [".bru-bus.com"] },
   },
 
   app: {

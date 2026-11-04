@@ -39,7 +39,6 @@ export function createDefaultSearchForm(): ReverseSearchFormState {
  * 避免兩邊規則不同步時互相矛盾。
  */
 export function useReverseSearch() {
-  const config = useRuntimeConfig();
 
   const loading = ref(false);
   const error = ref<ReverseSearchError | null>(null);
@@ -65,7 +64,6 @@ export function useReverseSearch() {
     try {
       const data = await $fetch<ReverseSearchResult>("/api/reverse-search", {
         method: "POST",
-        baseURL: config.public.apiBaseUrl,
         body: payload,
       });
       result.value = data;
