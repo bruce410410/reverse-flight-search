@@ -6,8 +6,8 @@ import { z } from "zod";
  * 而不是等到執行期才在某個功能裡出現隱晦的 undefined 錯誤。
  */
 const envSchema = z.object({
-  PORT: z.coerce.number().int().positive().default(3001),
-  HOST: z.string().default("0.0.0.0"),
+  PORT: z.coerce.number().int().positive().default(3011),
+  HOST: z.string().default("127.0.0.1"),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 
   CORS_ORIGIN: z.string().default("http://localhost:3000"),

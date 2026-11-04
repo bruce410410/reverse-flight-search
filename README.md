@@ -83,7 +83,7 @@ cp .env.example .env
 # → 搜尋 "Sky Scrapper" → Subscribe to Test → 選 BASIC（$0）方案 → 複製 X-RapidAPI-Key）
 # 選填 AERODATABOX_API_KEY（申請：https://rapidapi.com/aedbx-aedbx/api/aerodatabox，跟上面同一個平台）
 npm install
-npm run dev        # http://localhost:3001
+npm run dev        # http://localhost:3011
 ```
 
 ### 3. 啟動前端

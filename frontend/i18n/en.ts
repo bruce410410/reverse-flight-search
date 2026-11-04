@@ -423,7 +423,7 @@ export const en: Messages = {
     recentLive: "Live · about 2",
     refresh: "Check again",
     checkedAt: "Checked {t}",
-    backendDown: "Can't reach the backend. Make sure it's running (default http://localhost:3001).",
+    backendDown: "Can't reach the backend. Make sure it's running (default http://localhost:3011).",
     latency: "Redis latency {ms} ms",
   },
   privacy: {

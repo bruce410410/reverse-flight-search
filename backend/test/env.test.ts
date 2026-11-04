@@ -8,8 +8,8 @@ describe("loadEnv", () => {
 
   it("套用預設值，當環境變數缺省時", () => {
     const env = loadEnv({});
-    expect(env.PORT).toBe(3001);
-    expect(env.HOST).toBe("0.0.0.0");
+    expect(env.PORT).toBe(3011);
+    expect(env.HOST).toBe("127.0.0.1");
     expect(env.REDIS_HOST).toBe("localhost");
     expect(env.REDIS_PORT).toBe(6379);
     expect(env.REDIS_MAX_RETRIES).toBe(10);

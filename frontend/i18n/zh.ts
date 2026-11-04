@@ -422,7 +422,7 @@ export const zh = {
     recentLive: "即時 · 約用 2 次",
     refresh: "重新檢查",
     checkedAt: "檢查時間 {t}",
-    backendDown: "無法連線到後端服務，請確認後端（預設 http://localhost:3001）已啟動。",
+    backendDown: "無法連線到後端服務，請確認後端（預設 http://localhost:3011）已啟動。",
     latency: "Redis 延遲 {ms} ms",
   },
   privacy: {

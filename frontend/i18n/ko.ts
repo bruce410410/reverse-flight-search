@@ -423,7 +423,7 @@ export const ko: Messages = {
     recentLive: "실시간 · 약 2회",
     refresh: "다시 확인",
     checkedAt: "확인 시각 {t}",
-    backendDown: "백엔드에 연결할 수 없어요. 실행 중인지 확인하세요 (기본 http://localhost:3001).",
+    backendDown: "백엔드에 연결할 수 없어요. 실행 중인지 확인하세요 (기본 http://localhost:3011).",
     latency: "Redis 지연 {ms} ms",
   },
   privacy: {

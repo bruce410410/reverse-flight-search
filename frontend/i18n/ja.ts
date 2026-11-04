@@ -423,7 +423,7 @@ export const ja: Messages = {
     recentLive: "リアルタイム · 約 2 回",
     refresh: "再確認",
     checkedAt: "確認時刻 {t}",
-    backendDown: "バックエンドに接続できません。起動しているか確認してください（既定 http://localhost:3001）。",
+    backendDown: "バックエンドに接続できません。起動しているか確認してください（既定 http://localhost:3011）。",
     latency: "Redis 遅延 {ms} ms",
   },
   privacy: {

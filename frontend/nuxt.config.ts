@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   // 後端 API 位址，可透過環境變數覆寫（例如部署到不同主機時）。
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || "http://localhost:3001",
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:3011",
     },
   },
 

@@ -6,7 +6,7 @@ echo "啟動 mini-redis（純 JS 版 Redis 相容伺服器，不需要 Docker）
 (cd backend && nohup node scripts/mini-redis.mjs 6379 > /tmp/reverse-flight-mini-redis.log 2>&1 & echo $! > /tmp/reverse-flight-mini-redis.pid)
 sleep 1
 
-echo "啟動後端 (http://localhost:3001)..."
+echo "啟動後端 (http://localhost:3011)..."
 (cd backend && nohup npx tsx --env-file .env src/index.ts > /tmp/reverse-flight-backend.log 2>&1 & echo $! > /tmp/reverse-flight-backend.pid)
 sleep 2
 
